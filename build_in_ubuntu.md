@@ -39,7 +39,10 @@ lrwxrwxrwx  1 root root     21 12月 15 16:26 libevent.so -> libevent-2.1.so.6.0
 ### Attension
 
   If apfree_wifidog occurs : <code> is_error function not found </code> ,that relate with json-c/json
-<code>  openwrt/build_dir/target-mipsel_24kec+dsp_musl-1.1.14/json-c-0.12 </code> 
+  
+<code>
+   openwrt/build_dir/target-mipsel_24kec+dsp_musl-1.1.14/json-c-0.12
+</code> 
 
-  libhttpd api files : httpd.h httpd_priv.h , copy them to wifidog source path , that Avoid errors.
+  libhttpd api files : httpd.h httpd_priv.h , copy them to wifidog source path , that avoid errors.
 
