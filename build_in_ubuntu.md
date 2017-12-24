@@ -23,7 +23,7 @@
  
   Enter into the source path and run 
   <code>cmake . </code> or 
-  <code>./config </code> or <code>./autogen.sh </code> to build Makefile once exist ,
+  <code>./configure </code> or <code>./autogen.sh </code> to build Makefile once exist ,
   then run command <code> make </code> At last <code> sudo make install</code> 
   The "so library" files is in the path 
   
