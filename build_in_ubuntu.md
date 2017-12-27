@@ -7,7 +7,7 @@
    iptables-extensions
    libhttpd
 
-### Howto install 
+### Howto install libevent2
 
   libevent2 as example :
 
@@ -50,17 +50,18 @@
   libhttpd api files : httpd.h httpd_priv.h , copy them to wifidog source path , that avoid errors.
 
 ###  Howto install libiptables-extensions
+   
    The issue "/usr/bin/ld: 找不到 -liptext ", that means libiptext.so file not found .
    Here is what i have done.
+   
    <pre><code>
    // build method:
    cp -r ~/openwrt/build_dir/target-mipsel_24kec+dsp_musl-1.1.14/linux-ramips_mt7620/iptables-1.4.21 ~/
    cd ~/iptables-1.4.21/
    ./configure
+   make
    sudo make install
-   
    // you can try to find them (include "libiptext4.so libiptext6.so")  install now 
-   
    dl:~/iptables-1.4.21$ 
    dl:~/iptables-1.4.21$ find ./ -name "libiptext.so"
    ./extensions/libiptext.so
@@ -69,8 +70,32 @@
    /lib/i386-linux-gnu/libiptext.so
    /usr/local/lib/libiptext.so
    </code></pre>
- 
+   
+>  libiptext is instead of libext, so you should apply patches by openwrt
+   patch source "https://github.com/openwrt/openwrt/tree/master/package/network/utils/iptables"
+   
+<pre><code>
+dl:~/Downloads/iptables-14$ ./configure
+dl:~/Downloads/iptables-14$ git am --abort
+dl:~/Downloads/iptables-14$ git am patches/*.patch
+补丁格式检测失败。
+dl:~/Downloads/iptables-14$ git am patches/600-shared-libext.patch
+补丁格式检测失败。
+dl:~/Downloads/iptables-14$ git apply patches/600-shared-libext.patch
+error: 打补丁失败：Downloads/iptables-14/extensions/GNUmakefile.in:71
+error: Downloads/iptables-14/extensions/GNUmakefile.in：补丁未应用
+dl:~/Downloads/iptables-14$ git apply patches/*.patch
+dl:~/Downloads/iptables-14$ make
+dl:~/Downloads/iptables-14$ find ./ -name "libiptext*"
+./extensions/libiptext4.so
+./extensions/libiptext.so
+./extensions/libiptext6.so
+dl:~/Downloads/iptables-14$ sudo make install
+</pre></code>
 
+
+
+ 
    
    
    
